@@ -20,7 +20,7 @@ behavior: "smooth"
 function celebrate(){
 
 document.getElementById("result").innerHTML =
-"❤️ Officially Us ❤️<br><br>And so a beautiful story begins...";
+"❤️ You are mine ~ I am Your ❤️<br><br>And Our so a beautiful story begins...";
 
 for(let i=0;i<120;i++){
 
