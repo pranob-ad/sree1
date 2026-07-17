@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Shree</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.4/css/all.min.css" integrity="sha512-hHsV1Czf8oAE+q6HkYbE0oL4ZV1l/9O9R3CRVhcYgP4y7wbnvV7nfOm8+qK4wgPpA7Oa1fPVYpf3s5K2G8q4XQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="aurora-layer" aria-hidden="true"></div>
+  <div class="floating-hearts" aria-hidden="true"></div>
+  <div class="particle-layer" aria-hidden="true"></div>
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+  <div id="loader" class="loader">
+    <div class="heart-loader">
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+    </div>
+    <p>Preparing your surprise...</p>
+  </div>
+
+  <div class="progress-wrap"><div id="progressBar" class="progress-bar"></div></div>
+
+  <main id="page" class="page hidden">
+    <section class="section welcome-section active" id="welcomeSection">
+      <div class="section-inner glass-card welcome-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">For Someone Very Special ❤️</p>
+          <h1>Happy Birthday, Shree</h1>
+          <p>Every moment with you is the most beautiful surprise. Let's celebrate with music, lights, and vertually with me.</p>
+          <button id="beginButton" class="button hero-button"><i class="fa-solid fa-play"></i> Begin the Celebration</button>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-photo glass-card">
+            <img src="assets/images/hero-photo.jpg" alt="Smiling couple" loading="lazy">
+            <div class="hero-photo__overlay"></div>
+            <div class="hero-photo__label">Our magical moment</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section music-section hidden" id="musicSection">
+      <div class="section-inner glass-card music-card">
+        <div>
+          <p class="eyebrow">Now playing</p>
+          <h2>Some lyrics from my side</h2>
+          <p>With love let the celebration unfold.</p>
+        </div>
+        <div class="music-controls">
+          <button id="musicToggle" class="icon-button"><i class="fa-solid fa-play"></i></button>
+          <div class="music-meta">
+            <span class="music-title">A Wish For You my love</span>
+            <span class="music-caption">Pran & Shree</span>
+          </div>
+          <div class="volume-control">
+            <i class="fa-solid fa-volume-low"></i>
+            <input id="volumeRange" type="range" min="0" max="1" step="0.01" value="0.75">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section countdown-section hidden" id="countdownSection">
+      <div class="section-inner glass-card countdown-card">
+        <div class="countdown-copy">
+          <p class="eyebrow">Countdown to our day</p>
+          <h2>18 July • 12:00 AM</h2>
+          <p>Every second brings us closer to the happiest moment.</p>
+        </div>
+        <div class="countdown-grid">
+          <div class="countdown-item"><span id="days">00</span><small>Days</small></div>
+          <div class="countdown-item"><span id="hours">00</span><small>Hours</small></div>
+          <div class="countdown-item"><span id="minutes">00</span><small>Minutes</small></div>
+          <div class="countdown-item"><span id="seconds">00</span><small>Seconds</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section envelope-section hidden" id="envelopeSection">
+      <div class="section-inner glass-card envelope-card">
+        <div>
+          <p class="eyebrow">Open Your Surprise</p>
+          <h2>Tap the envelope to reveal the letter</h2>
+        </div>
+        <div class="envelope-scene">
+          <div class="envelope-3d" id="envelope">
+            <div class="envelope-back"></div>
+            <div class="envelope-front"></div>
+            <div class="envelope-flap"></div>
+          </div>
+          <button id="openEnvelopeBtn" class="button secondary">Open the Envelope</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section letter-section hidden" id="letterSection">
+      <div class="section-inner glass-card letter-card">
+        <div class="letter-paper" id="letterPaper">
+          <div class="letter-title">My Dearest Shree,</div>
+          <div class="letter-body" id="letterText"></div>
+          <div class="letter-signature">— Pran</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section message-section hidden" id="messageSection">
+      <div class="section-inner glass-card message-card">
+        <p class="eyebrow">Birthday Message</p>
+        <h2 id="messageTitle">A love note written just for you</h2>
+        <p id="messageText"></p>
+      </div>
+    </section>
+
+    <section class="section hero-section hidden" id="heroSection">
+      <div class="section-inner glass-card hero-card">
+        <div class="hero-frame">
+          <img src="assets/images/hero-photo.jpg" alt="Smiling couple" loading="lazy">
+          <div class="hero-caption">My Favourite Smile ❤️</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery-section hidden" id="gallerySection">
+      <div class="section-inner glass-card gallery-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Memory Gallery</p>
+            <h2>Beautiful moments we shared</h2>
+          </div>
+          <span class="gallery-note">Tap to enlarge</span>
+        </div>
+        <div class="masonry-grid" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <section class="section reasons-section hidden" id="reasonsSection">
+      <div class="section-inner glass-card reasons-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Reasons I Love You</p>
+            <h2>Fifty reasons that make you unforgettable</h2>
+          </div>
+        </div>
+        <div class="reasons-grid" id="reasonsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section cake-section hidden" id="cakeSection">
+      <div class="section-inner glass-card cake-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Interactive vertual Cake for you</p>
+            <h2>Blow the candles, then cut the cake</h2>
+          </div>
+          <button id="blowButton" class="button">Blow the Candles</button>
+        </div>
+        <div class="cake-stage">
+          <div class="cake-3d" id="cakeScene">
+            <div class="cake-base">
+              <div class="cake-top"></div>
+              <div class="cake-body">
+                <div class="cake-half left"></div>
+                <div class="cake-half right"></div>
+              </div>
+              <div class="lava-glow" id="lavaGlow"></div>
+              <div class="lava-flow" id="lavaFlow"></div>
+            </div>
+            <div class="candles">
+              <div class="candle"><div class="flame"></div></div>
+              <div class="candle"><div class="flame"></div></div>
+              <div class="candle"><div class="flame"></div></div>
+            </div>
+          </div>
+          <div class="knife-area">
+            <div id="knife" class="knife"><span class="knife-handle"></span></div>
+            <p class="knife-text">Drag the knife to cut the cake</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fireworks-section hidden" id="fireworksSection">
+      <div class="section-inner glass-card fireworks-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Fireworks</p>
+            <h2>Celebration in the sky</h2>
+          </div>
+          <span class="fireworks-note">Soft glowing explosions.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section promise-section hidden" id="promiseSection">
+      <div class="section-inner glass-card promise-card">
+        <div class="promise-text" id="promiseText"></div>
+        <div class="signature">— Pran</div>
+      </div>
+    </section>
+
+    <section class="section secret-section hidden" id="secretSection">
+      <div class="section-inner glass-card secret-card">
+        <div class="secret-sky" id="secretSky"></div>
+        <div class="secret-copy" id="secretCopy"></div>
+      </div>
+    </section>
+
+    <button id="backToTop" class="back-top"><i class="fa-solid fa-arrow-up"></i></button>
+  </main>
+
+  <audio id="musicTrack" loop preload="auto" src="assets/music/birthday-melody.mp3"></audio>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-oN5bq7LqWEv2xE5qevUCpxH0x4eIsugomkjO1Grf7nqgJWDMTTjaTJBY7ucJYyKbQ2i9tBndFT9s9YtB5Q4pUA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
